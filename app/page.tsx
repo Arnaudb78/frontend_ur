@@ -3,8 +3,9 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-    <div className="w-full h-screen flex justify-center items-center bg-red-200">
-      <h2 className="">Home Urban</h2>
+    <div className="w-full h-screen flex flex-col justify-center items-center bg-black">
+      <h2 className="text-white text center font-bold text-[50px]">B3DEV be faster.</h2>
+      <Image src="/getout.png" alt="logo" width="1000" height="100" />
     </div>
     </>
   );
