@@ -1,0 +1,14 @@
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar"
+
+export default function GuidePage() {
+    return (
+        <>
+            <Navbar />
+            <section className="p-6 w-full h-full bg-secondary-100">
+                <p>GuidePage</p>
+            </section>
+            <Footer />
+        </>
+    );
+}

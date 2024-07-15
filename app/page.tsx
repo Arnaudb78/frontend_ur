@@ -1,12 +1,14 @@
-import Image from "next/image";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 
 export default function Home() {
   return (
     <>
-    <div className="w-full h-screen flex flex-col justify-center items-center bg-black">
-      <h2 className="text-white text center font-bold text-[50px]">B3DEV be faster.</h2>
-      <Image src="/getout.png" alt="logo" width="1000" height="100" />
-    </div>
+      <Navbar />
+        <section className="w-full h-screen bg-secondary-100 p-6">
+          <p>HomePage</p>
+        </section>
+      <Footer />
     </>
   );
 }
