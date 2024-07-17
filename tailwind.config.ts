@@ -12,8 +12,13 @@ const config: Config = {
         primary: "#7bf1a8",
         secondary: {
           100: "#FEFDF4",
+          200: "#F4F3EB",
+          300: "#ffaa01"
         }
-      }
+      },
+      rotate: {
+        '3': '-3deg',
+      },
     },
   },
   plugins: [],

@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
-        <footer className="h-full w-full p-2 lg:p-8 font-satoshi">
-            <div className="w-full h-full bg-[#F4F3EB] flex flex-col p-8 text-[12px] gap-4 rounded-2xl">
+        <footer className="h-full w-full p-4 lg:p-8 font-satoshi">
+            <div className="w-full h-full bg-secondary-200 flex flex-col p-8 text-[12px] gap-4 rounded-2xl">
                 <div className="flex flex-col gap-2 lg:w-full h-full">
                     <p>Ce site a un faible impact environnemental</p>
                 </div>
