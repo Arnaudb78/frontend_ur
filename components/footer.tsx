@@ -37,7 +37,7 @@ export default function Footer() {
                 </div>
                 <div className="h-[0.5px] w-full bg-primary"></div>
                 <div className="w-full h-fit flex justify-start items-center">
-                    <p className="w-3/5">Copyright © 2024 Vitfesse - Tous droits réservés</p>
+                    <p className="w-3/5">Copyright © 2024 UrbanRoots - Tous droits réservés</p>
                     <div className="w-[70%] flex justify-end gap-2">
                         <a href="https://www.instagram.com/vitfesse/">
                             <svg className="w-6 h-6 opacity-75" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
