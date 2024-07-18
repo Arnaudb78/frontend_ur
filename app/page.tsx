@@ -8,7 +8,14 @@ export default function Home() {
             <Navbar />
             <section className="w-full h-full bg-secondary-100 p-6 flex flex-col gap-8">
                 <div className="w-full h-full relative">
-                    <Image src="/images/bg-home.jpg" alt="hero" width={500} height={500} className="rounded-2xl w-auto h-auto" />
+                    <Image
+                        src="/images/bg-home.jpg"
+                        alt="jardin potager"
+                        width={500}
+                        height={500}
+                        className="rounded-2xl w-auto h-auto"
+                        loading="lazy"
+                    />
                     <div className="flex flex-col text-center font-bold absolute top-4 left-4 bg-secondary-300 p-2 rounded-md bg-opacity-75">
                         <h1 className="text-2xl">UrbanRoots</h1>
                         <p className="text-md">Semons aujourd&apos;hui, récoltons demain</p>
