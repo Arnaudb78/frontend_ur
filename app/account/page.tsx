@@ -1,4 +1,6 @@
 "use client";
+import Admin from "@/components/account/admin";
+import User from "@/components/account/user";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { useRouter } from "next/navigation";
@@ -20,7 +22,7 @@ export default function Account() {
     }, []);
 
     const verifyToken = async (accessToken: string) => {
-        const response = await fetch("http://localhost:5001/users/verify", {
+        const response = await fetch("https://urban-roots-ada879145d2c.herokuapp.com/users/verify", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -44,12 +46,14 @@ export default function Account() {
 
     return (
         <>
-            <Navbar />
-            <section className="bg-secondary-300 w-full h-full p-8">
-                <p>Mon compte</p>
-                {admin ? <p>Je suis un grand ADMIN</p> : <p>Je suis un petit user</p>}
-            </section>
-            <Footer />
+            <div className="bg-secondary-100">
+                <Navbar />
+                <section className="bg-secondary-100 w-full h-full p-8">
+                    {admin ? <Admin/> : <User/>}
+                </section>
+                <Footer />
+            </div>
+            
         </>
     );
 }

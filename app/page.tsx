@@ -14,7 +14,7 @@ export default function Home() {
                         width={500}
                         height={500}
                         className="rounded-2xl w-auto h-auto"
-                        loading="lazy"
+                        priority
                     />
                     <div className="flex flex-col text-center font-bold absolute top-4 left-4 bg-secondary-300 p-2 rounded-md bg-opacity-75">
                         <h1 className="text-2xl">UrbanRoots</h1>
