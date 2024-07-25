@@ -6,7 +6,7 @@ export default function Home() {
     return (
         <>
             <Navbar />
-            <section className="w-full h-full bg-secondary-100 p-6 flex flex-col gap-8">
+            <section className="w-full h-full bg-secondary-100 p-6 flex flex-col gap-8 pt-24">
                 <div className="w-full h-full relative">
                     <Image
                         src="/images/bg-home.jpg"

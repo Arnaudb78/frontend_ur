@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Navbar from "../navbar";
-import Footer from "../footer";
-
+import { useRouter } from "next/navigation";
 interface ThreadProps {
     _id: string;
     title: string;
@@ -13,21 +11,41 @@ interface ThreadProps {
     post: string[];
     createdAt: string;
     updatedAt: string;
+    bool: boolean; 
 }
 
+
 export default function Thread(props: ThreadProps) {
+    const { bool, _id, title, content, author, createdAt, updatedAt } = props;
+    const router = useRouter();
+    
+
     useEffect(() => {
     }, [props]);
 
+    const handleClick = (id: string) => {
+        router.push(`/thread/${id}`);
+    }
+
     return (
         <>
-            <div className="w-full h-full bg-secondary-200 flex flex-col gap-2 p-4 rounded-2xl text-sm">
-                <h2 className="font-bold">{props.title}</h2>
-                <p>{props.content}</p>
-                <p><span className="font-bold">Author:</span> {props.author}</p>
-                <p><span className="font-bold">Créé : </span>{props.createdAt}</p>
-                <p><span className="font-bold">Mis à jour :</span> {props.updatedAt}</p>
-            </div>
+            {bool ? (
+                <div className="flex flex-col gap-2 p-4 bg-secondary-300 rounded-2xl text-sm">
+                    <h2 className="font-bold">{title}</h2>
+                    <p>{content}</p>
+                    <p><span className="font-bold">Author:</span> {author}</p>
+                    <p><span className="font-bold">Créé : </span>{createdAt}</p>
+                    <p><span className="font-bold">Mis à jour :</span> {updatedAt}</p>
+                </div>
+            ) : (
+                <div onClick={() => handleClick(props._id)} className="flex flex-col gap-2 p-4 bg-secondary-200 rounded-2xl text-sm">
+                    <h2 className="font-bold">{title}</h2>
+                    <p>{content}</p>
+                    <p><span className="font-bold">Author:</span> {author}</p>
+                    <p><span className="font-bold">Créé : </span>{createdAt}</p>
+                    <p><span className="font-bold">Mis à jour :</span> {updatedAt}</p>
+                </div>
+            )}
         </>
     );
 }

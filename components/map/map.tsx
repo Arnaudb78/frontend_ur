@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 export default function Map() {
     return (
         <>
-            <MapContainer center={[48.8566, 2.3522]} zoom={15} className="rounded-2xl h-96 w-full">
+            <MapContainer center={[48.8566, 2.3522]} zoom={15} className="rounded-2xl h-96 w-full z-'">
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

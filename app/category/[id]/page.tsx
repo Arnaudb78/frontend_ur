@@ -12,21 +12,22 @@ interface ThreadProps {
     content: string;
     category: string;
     author: string;
-    post: string[]; // Utilisation correcte pour les tableaux
+    post: string[];
     createdAt: string;
     updatedAt: string;
 }
 
 export default function DetailsPage() {
     const { id } = useParams();
-    const [threads, setThreads] = useState<ThreadProps[]>([]); // Tableau de threads
+    const [threads, setThreads] = useState<ThreadProps[]>([]);
+    const [bool, setBool] = useState(false);
 
     const getData = async () => {
         if (id) {
             try {
                 const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/thread/${id}`);
                 const data = await response.json();
-                setThreads(data); // Assurez-vous que data est un tableau
+                setThreads(data);
             } catch (error) {
                 console.error("Failed to fetch data:", error);
             }
@@ -40,9 +41,9 @@ export default function DetailsPage() {
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <Navbar />
-            <div className="flex flex-col gap-4 p-8">
+            <div className="flex flex-col gap-4 p-8 pt-24">
                 {threads.length > 0 ? (
-                    threads.map(thread => <Thread key={thread._id} {...thread} />) // Passez chaque thread en prop
+                    threads.map(thread => <Thread key={thread._id} {...thread} bool={bool} />)
                 ) : (
                     <div>Pas encore de sujet.</div>
                 )}

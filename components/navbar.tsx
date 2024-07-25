@@ -21,26 +21,26 @@ export default function Navbar() {
         }
     }
 
-    useEffect(() => {
-        handleConnect();
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
+    // useEffect(() => {
+    //     handleConnect();
+    //     const handleScroll = () => {
+    //         const currentScrollY = window.scrollY;
 
-            if (currentScrollY > lastScrollY) {
-                setIsVisible(false);
-            } else {
-                setIsVisible(true);
-            }
+    //         if (currentScrollY > lastScrollY) {
+    //             setIsVisible(false);
+    //         } else {
+    //             setIsVisible(true);
+    //         }
 
-            setLastScrollY(currentScrollY);
-        };
+    //         setLastScrollY(currentScrollY);
+    //     };
 
-        window.addEventListener("scroll", handleScroll);
+    //     window.addEventListener("scroll", handleScroll);
 
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [lastScrollY]);
+    //     return () => {
+    //         window.removeEventListener("scroll", handleScroll);
+    //     };
+    // }, [lastScrollY]);
 
     function clearStorage() {
         sessionStorage.clear();
@@ -49,7 +49,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className={`w-full p-6 bg-primary text-md ${isVisible ? "visible" : "invisible"}`} style={{ zIndex: 999 }}>
+            <nav className="w-full p-6 bg-primary text-md fixed" style={{ zIndex: 999 }}>
                 <div className="w-full flex justify-between items-center">
                     <a href="/" className="font-bold text-xl">
                         UrbanRoots
