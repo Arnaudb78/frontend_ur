@@ -14,7 +14,7 @@ const FormLogin: React.FC<FormCreateProps> = ({ setShowSignup }) => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (!mail || !password) return alert("Veuillez remplir tous les champs.");
+        if (!mail || !password) return alert("Veuillez remplir tous les champs");
 
         const response = await fetch("https://urban-roots-ada879145d2c.herokuapp.com/users/login", {
             method: "POST",
