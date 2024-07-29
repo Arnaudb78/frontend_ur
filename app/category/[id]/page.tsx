@@ -25,14 +25,14 @@ export default function DetailsPage() {
     const getData = async () => {
         if (id) {
             try {
-                const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/thread/${id}`);
+                const response = await fetch(`http://localhost:5001/forum/thread/${id}`);
                 const data = await response.json();
                 setThreads(data);
             } catch (error) {
                 console.error("Failed to fetch data:", error);
             }
         }
-    }
+    };
 
     useEffect(() => {
         getData();
@@ -42,11 +42,7 @@ export default function DetailsPage() {
         <Suspense fallback={<div>Loading...</div>}>
             <Navbar />
             <div className="flex flex-col gap-4 p-8 pt-24">
-                {threads.length > 0 ? (
-                    threads.map(thread => <Thread key={thread._id} {...thread} bool={bool} />)
-                ) : (
-                    <div>Pas encore de sujet.</div>
-                )}
+                {threads.length > 0 ? threads.map((thread) => <Thread key={thread._id} {...thread} bool={bool} />) : <div>Pas encore de sujet.</div>}
             </div>
             <Footer />
         </Suspense>

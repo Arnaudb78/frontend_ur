@@ -14,8 +14,8 @@ export default function Footer() {
                             Conditions
                         </a>
                         <a href="/assistance">Confidentialité</a>
-                        <a href="/assistance">Mentions légales</a>
-                        <a href="/assistance">Gestion cookies</a>
+                        <a href="/mentions">Mentions légales</a>
+                        <a href="/mentions">Gestion cookies</a>
                     </div>
                 </div>
                 <div className="flex flex-col gap-2 text-center lg:w-full h-full">

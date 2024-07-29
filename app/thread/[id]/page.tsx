@@ -28,28 +28,28 @@ interface ThreadProps {
     bool: boolean;
 }
 
-export default function PostDetails(){
+export default function PostDetails() {
     const { id } = useParams();
     const [post, setPost] = useState<PostProps[]>([]);
     const [thread, setThread] = useState<ThreadProps | null>(null); // Utilisation d'un objet ou null
-    const [bool , setBool] = useState(false);
+    const [bool, setBool] = useState(false);
 
     const getPostData = async () => {
         if (id) {
             try {
-                const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/post/${id}`);
+                const response = await fetch(`http://localhost:5001/forum/post/${id}`);
                 const data = await response.json();
                 setPost(data);
             } catch (error) {
                 console.error("Failed to fetch data:", error);
             }
         }
-    }
+    };
 
     const getThreadData = async () => {
         if (id) {
             try {
-                const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/threadId/${id}`);
+                const response = await fetch(`http://localhost:5001/forum/threadId/${id}`);
                 const data = await response.json();
                 setThread(data);
                 setBool(true);
@@ -57,7 +57,7 @@ export default function PostDetails(){
                 console.error("Failed to fetch data:", error);
             }
         }
-    }
+    };
 
     useEffect(() => {
         getPostData();
@@ -68,18 +68,10 @@ export default function PostDetails(){
         <Suspense fallback={<div>Loading...</div>}>
             <Navbar />
             <div className="flex flex-col gap-4 p-8 pt-24">
-                {thread ? (
-                    <Thread {...thread} bool={bool} />
-                ) : (
-                    <div>Chargement du sujet...</div>
-                )}
-                {post.length > 0 ? (
-                    post.map(post => <Post key={post._id} {...post} />)
-                ) : (
-                    <div>Pas encore de post.</div>
-                )}
+                {thread ? <Thread {...thread} bool={bool} /> : <div>Chargement du sujet...</div>}
+                {post.length > 0 ? post.map((post) => <Post key={post._id} {...post} />) : <div>Pas encore de post.</div>}
             </div>
             <Footer />
         </Suspense>
-    )
+    );
 }
