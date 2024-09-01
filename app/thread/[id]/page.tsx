@@ -82,6 +82,18 @@ export default function PostDetails() {
             return;
         }
 
+        const user = sessionStorage.getItem("user");
+        if (!user) {
+            alert("Utilisateur non connecté.");
+            return;
+        }
+
+        const accessToken = JSON.parse(user).accessToken;
+        if (!accessToken) {
+            alert("Token d'accès manquant.");
+            return;
+        }
+
         try {
             const response =  await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/post`, {
                 method: "POST",
@@ -91,7 +103,7 @@ export default function PostDetails() {
                 body: JSON.stringify({
                     content: comment,
                     thread: id,
-                    accessToken: JSON.parse(sessionStorage.getItem("user")).accessToken,
+                    accessToken: accessToken,
                 }),
             } )
 
