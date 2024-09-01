@@ -30,7 +30,7 @@ export default function GuidePage() {
     const [guides, setGuides] = useState<Guides[]>([]);
 
     useEffect(() => {
-        fetch("http://localhost:5001/guide")
+        fetch("https://urban-roots-ada879145d2c.herokuapp.com/guide")
             .then((res) => res.json())
             .then((data) => setGuides(data));
     }, []);
