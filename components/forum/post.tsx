@@ -1,8 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import Navbar from "../navbar";
-import Footer from "../footer";
 
 interface PostProps {
     _id: string;
@@ -21,9 +19,8 @@ export default function Post(props: PostProps) {
         <>
             <div className="w-full h-full bg-secondary-200 flex flex-col gap-2 p-4 rounded-2xl text-sm">
                 <h2 className="font-bold">{props.author}</h2>
-                <p>{props.content}</p>
-                <p><span className="font-bold">Créé : </span>{props.createdAt}</p>
-                <p><span className="font-bold">Mis à jour :</span> {props.updatedAt}</p>
+                <p><span className="font-bold">Commentaire :</span> {props.content}</p>
+                <p><span className="font-bold">Date : </span>{props.createdAt}</p>
             </div>
         </>
     );

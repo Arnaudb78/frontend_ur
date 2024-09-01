@@ -25,7 +25,7 @@ export default function DetailsPage() {
     const getData = async () => {
         if (id) {
             try {
-                const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/thread/${id}`);
+                const response = await fetch(`http://localhost:5001/forum/thread/${id}`);
                 const data = await response.json();
                 setThreads(data);
             } catch (error) {

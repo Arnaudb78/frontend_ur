@@ -67,16 +67,17 @@ export default function Navbar() {
                         <li>
                             <a href="/guide">Guide</a>
                         </li>
-                        <li>{isConnected ? <a href="/account">Mon compte</a> : <a href="/connect">Connexion</a>}</li>
+                        <li>{isConnected ? <a href="/connect">Connexion</a> : <a href="/account">Mon compte</a> }</li>
                         <li>
-                            {isConnected ? (
+                            {isConnected ?
+                                (
+                                    <></>
+                                ) : (
                                 <button className="flex gap-2 items-center" onClick={clearStorage}>
                                     <FontAwesomeIcon icon={faPowerOff} className="w-6 h-6 cursor-pointer" />
                                     <p className="text-sm">Deconnexion</p>
                                 </button>
-                            ) : (
-                                <></>
-                            )}
+                            ) }
                         </li>
                     </ul>
                 )}
