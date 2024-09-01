@@ -20,7 +20,9 @@ export default function Navbar() {
             setIsConnected(true);
         }
     }
-
+    useEffect(() => {
+        handleConnect();
+    }, []);
     // useEffect(() => {
     //     handleConnect();
     //     const handleScroll = () => {
