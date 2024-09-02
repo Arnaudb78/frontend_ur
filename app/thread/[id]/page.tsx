@@ -4,7 +4,6 @@ import Footer from "@/components/footer";
 import Post from "@/components/forum/post";
 import Thread from "@/components/forum/thread";
 import Navbar from "@/components/navbar";
-import { access } from "fs";
 import { useParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
@@ -46,7 +45,7 @@ export default function PostDetails() {
     const getPostData = async () => {
         if (id) {
             try {
-                const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/post/${id}`);
+                const response = await fetch(`http://localhost:5001/forum/post/${id}`);
                 const data = await response.json();
                 setPost(data);
             } catch (error) {
@@ -58,7 +57,7 @@ export default function PostDetails() {
     const getThreadData = async () => {
         if (id) {
             try {
-                const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/threadId/${id}`);
+                const response = await fetch(`http://localhost:5001/forum/threadId/${id}`);
                 const data = await response.json();
                 setThread(data);
                 setBool(true);
@@ -95,7 +94,7 @@ export default function PostDetails() {
         }
 
         try {
-            const response =  await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/post`, {
+            const response = await fetch(`http://localhost:5001/forum/post`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -105,7 +104,7 @@ export default function PostDetails() {
                     thread: id,
                     accessToken: accessToken,
                 }),
-            } )
+            });
 
             if (response.status === 400) return alert("Informations invalides.");
             if (response.status === 404) return alert("Utilisateur non trouvé.");
@@ -117,35 +116,36 @@ export default function PostDetails() {
         setComment("");
         getPostData();
     };
-        
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <Navbar />
             <section className="flex flex-col gap-4 p-8 pt-24">
-                
                 <div className="flex flex-col gap-4">
                     {thread ? <Thread {...thread} bool={bool} /> : <div>Chargement du sujet...</div>}
                     <div>
                         <p className="text-xl text-center font-bold">
-                        N&apos;hésitez pas à   <span className="bg-primary text-secondary-100 inline-block rotate-3">échanger</span> avec la communauté !
+                            N&apos;hésitez pas à <span className="bg-primary text-secondary-100 inline-block rotate-3">échanger</span> avec la
+                            communauté !
                         </p>
                     </div>
                     <div className="w-full h-[1px] bg-black"></div>
                     {post.length > 0 ? post.map((post) => <Post key={post._id} {...post} />) : <div>Pas encore de post.</div>}
                 </div>
-                
-                { isConnected ? (
+
+                {isConnected ? (
                     <form onSubmit={handleSubmit} className="w-full h-full flex flex-col gap-8 p-8 text-center">
-                    <textarea
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                    placeholder="Écrire un commentaire..."
-                    required
-                    className="w-full h-32 p-4 bg-secondary-200 rounded-2xl"
-                    />
-                    <button type="submit" className="bg-primary px-4 py-3 font-bold rounded-2xl hover:bg-green-800 hover:text-secondary-200">Poster le commentaire</button>
-                </form>
+                        <textarea
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                            placeholder="Écrire un commentaire..."
+                            required
+                            className="w-full h-32 p-4 bg-secondary-200 rounded-2xl"
+                        />
+                        <button type="submit" className="bg-primary px-4 py-3 font-bold rounded-2xl hover:bg-green-800 hover:text-secondary-200">
+                            Poster le commentaire
+                        </button>
+                    </form>
                 ) : (
                     <div>
                         <p className="text-center">Connectez-vous pour poster un commentaire.</p>

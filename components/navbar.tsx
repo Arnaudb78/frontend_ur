@@ -67,19 +67,18 @@ export default function Navbar() {
                             <a href="/forum">Forum</a>
                         </li>
                         <li>
-                            <a href="/guide">Guide</a>
+                            <a href="/guides">Guide</a>
                         </li>
-                        <li>{isConnected ? <a href="/account">Mon compte</a> : <a href="/connect">Connexion</a>  }</li>
+                        <li>{isConnected ? <a href="/account">Mon compte</a> : <a href="/connect">Connexion</a>}</li>
                         <li>
-                            {isConnected ?
-                                (
-                                    <button className="flex gap-2 items-center" onClick={clearStorage}>
-                                        <FontAwesomeIcon icon={faPowerOff} className="w-6 h-6 cursor-pointer" />
-                                        <p className="text-sm">Deconnexion</p>
-                                    </button>
-                                ): (
-                                    <></>
-                            ) }
+                            {isConnected ? (
+                                <button className="flex gap-2 items-center" onClick={clearStorage}>
+                                    <FontAwesomeIcon icon={faPowerOff} className="w-6 h-6 cursor-pointer" />
+                                    <p className="text-sm">Deconnexion</p>
+                                </button>
+                            ) : (
+                                <></>
+                            )}
                         </li>
                     </ul>
                 )}
