@@ -4,7 +4,9 @@ import Footer from "@/components/footer";
 import Post from "@/components/forum/post";
 import Thread from "@/components/forum/thread";
 import Navbar from "@/components/navbar";
-import { useParams } from "next/navigation";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useParams, useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 
 interface PostProps {
@@ -35,6 +37,7 @@ export default function PostDetails() {
     const [bool, setBool] = useState(false);
     const [isConnected, setIsConnected] = useState(false);
     const [comment, setComment] = useState("");
+    const router = useRouter();
 
     function handleConnect() {
         if (sessionStorage.getItem("user")) {
@@ -72,6 +75,10 @@ export default function PostDetails() {
         getThreadData();
         handleConnect();
     }, [id]);
+
+    function handleBack() {
+        router.back();
+    }
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -120,8 +127,12 @@ export default function PostDetails() {
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <Navbar />
-            <section className="flex flex-col gap-4 p-8 pt-24">
+            <section className="flex flex-col gap-4 p-8 pt-24 bg-secondary-100">
                 <div className="flex flex-col gap-4">
+                <div onClick={handleBack} className="w-full flex items-center gap-2">
+                    <FontAwesomeIcon icon={faArrowLeft} className="w-10 h-10 text-2xl cursor-pointer" />
+                    <p>Revenir aux sujets</p>
+                </div>
                     {thread ? <Thread {...thread} bool={bool} /> : <div>Chargement du sujet...</div>}
                     <div>
                         <p className="text-xl text-center font-bold">

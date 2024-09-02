@@ -17,7 +17,7 @@ interface UserProps {
     role: string;
 }
 
-export default function informations() {
+export default function Informations() {
     const router = useRouter();
     const [informations, setInformations] = useState<UserProps | null>(null);
 
@@ -31,16 +31,18 @@ export default function informations() {
         if (user) {
             try {
                 const userObject = JSON.parse(user);
-                console.log(userObject.accessToken);
-                const response = await fetch("http://localhost:5001/user", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ accessToken: userObject.accessToken }),
-                });
-                const data = await response.json();
-                setInformations(data);
+                const response = await fetch(`http://localhost:5001/users/${userObject.accessToken}`).then((res) => res.json());
+
+                if(response.status === 400) {
+                    alert("Token invalide, veuillez vous reconnecter.");
+                    router.push("/login");
+                }
+                if(response.status === 404) {
+                    alert("Utilisateur introuvable, vous allez être redirigé vers la page de connexion.");	
+                    router.push("/login");
+                }
+
+                setInformations(response);
             } catch (error) {
                 console.error(error);
             }
@@ -49,7 +51,7 @@ export default function informations() {
 
     useEffect(() => {
         getInformations();
-    });
+    }, []);
 
     return (
         <>
@@ -58,8 +60,14 @@ export default function informations() {
                 <FontAwesomeIcon onClick={handleBack} icon={faArrowLeft} className="w-10 h-10 text-2xl cursor-pointer" />
                 <h1>Informations du compte</h1>
                 <div>
-                    <h2>Prénom</h2>
+                    <h2 className="font-bold">Prénom</h2>
                     <p>{informations?.firstname}</p>
+                    <h2 className="font-bold">Nom</h2>
+                    <p>{informations?.lastname}</p>
+                    <h2 className="font-bold">Email</h2>
+                    <p>{informations?.mail}</p>
+                    <h2 className="font-bold">Newsletter</h2>
+                    <p>{informations?.isNewsletter ? "Inscrit" : "Non inscrit"}</p>
                 </div>
             </section>
             <Footer />
