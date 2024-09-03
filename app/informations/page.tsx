@@ -31,7 +31,7 @@ export default function Informations() {
         if (user) {
             try {
                 const userObject = JSON.parse(user);
-                const response = await fetch(`http://localhost:5001/users/${userObject.accessToken}`).then((res) => res.json());
+                const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/users/${userObject.accessToken}`).then((res) => res.json());
 
                 if(response.status === 400) {
                     alert("Token invalide, veuillez vous reconnecter.");

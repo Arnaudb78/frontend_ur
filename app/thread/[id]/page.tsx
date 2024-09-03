@@ -48,7 +48,7 @@ export default function PostDetails() {
     const getPostData = async () => {
         if (id) {
             try {
-                const response = await fetch(`http://localhost:5001/forum/post/${id}`);
+                const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/post/${id}`);
                 const data = await response.json();
                 setPost(data);
             } catch (error) {
@@ -60,7 +60,7 @@ export default function PostDetails() {
     const getThreadData = async () => {
         if (id) {
             try {
-                const response = await fetch(`http://localhost:5001/forum/threadId/${id}`);
+                const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/threadId/${id}`);
                 const data = await response.json();
                 setThread(data);
                 setBool(true);
@@ -101,7 +101,7 @@ export default function PostDetails() {
         }
 
         try {
-            const response = await fetch(`http://localhost:5001/forum/post`, {
+            const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/forum/post`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

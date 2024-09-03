@@ -39,7 +39,7 @@ export default function Garden() {
         }
 
         try {
-            const response = await fetch(`http://localhost:5001/garden/${accessToken}`);
+            const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/garden/${accessToken}`);
             const gardens = await response.json();
             console.log(gardens);
 
@@ -86,4 +86,3 @@ export default function Garden() {
         </>
     );
 }
-
