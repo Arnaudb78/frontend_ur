@@ -64,6 +64,9 @@ export default function Navbar() {
                             <a href="/map">Carte</a>
                         </li>
                         <li>
+                            <a href="/gardens">Jardins - Potager</a>
+                        </li>
+                        <li>
                             <a href="/forum">Forum</a>
                         </li>
                         <li>

@@ -20,6 +20,9 @@ interface Garden {
 export default function Garden() {
     const router = useRouter();
     const [gardens, setGardens] = useState<Garden[]>([]);
+    const [message, setMessage] = useState<string>("");
+    const [span, setSpan] = useState<string>("");
+    const [endMessage, setEndMessage] = useState<string>("");
 
     function handleBack() {
         router.back();
@@ -39,18 +42,18 @@ export default function Garden() {
         }
 
         try {
-            const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/garden/${accessToken}`);
+            const response = await fetch(`http://localhost:5001/garden/${accessToken}`);
             const gardens = await response.json();
-            console.log(gardens);
 
             if (response.status === 400) {
                 alert("Token invalide, veuillez vous reconnecter.");
                 router.push("/login");
                 return;
             }
-
             if (response.status === 404) {
-                alert("Jardin introuvable.");
+                setMessage("Pas encore de ");
+                setSpan("jardin");
+                setEndMessage("? Créez-en un dès maintenant !");
                 return;
             }
 
@@ -68,8 +71,10 @@ export default function Garden() {
         <>
             <Navbar />
             <section className="w-full h-full bg-secondary-100 p-6 flex flex-col pt-24 gap-8">
-                <FontAwesomeIcon onClick={handleBack} icon={faArrowLeft} className="w-10 h-10 text-2xl cursor-pointer" />
-                <h1>Mes jardins</h1>
+                <div className="flex items-center gap-4">
+                    <FontAwesomeIcon onClick={handleBack} icon={faArrowLeft} className="w-10 h-10 text-2xl cursor-pointer" />
+                    <h1>Mes jardins</h1>
+                </div>
                 {gardens.length > 0 ? (
                     gardens.map((garden) => (
                         <div key={garden._id} className="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md">
@@ -79,7 +84,14 @@ export default function Garden() {
                         </div>
                     ))
                 ) : (
-                    <p>Vous n&apos;avez pas de jardin.</p>
+                    <div className="w-full h-full flex flex-col gap-8 p-4 text-center">
+                    <h2 className="text-xl font-bold">
+                        {message} <span className="bg-secondary-300 px-1 text-secondary-100 inline-block rotate-3">{span}</span>{endMessage}
+                    </h2>
+                    <a href="/createGarden" className="bg-primary px-4 py-3 font-bold rounded-2xl hover:bg-green-800 hover:text-secondary-200">
+                        Ajouter mon jardin
+                    </a>
+                </div>
                 )}
             </section>
             <Footer />
