@@ -15,68 +15,63 @@ interface Garden {
     capacity: number;
 }
 
-interface User {
-    _id: string;
-    firstname: string;
-    lastname: string;
-    mail: string;
-    rules: string;
-    isNewsletter: boolean;
-    role: string;
-}
-
-interface Address {
-    street: string;
-    complementary: string;
-    postCode: string;
-    city: string;
-    country: string;
-}
-
-export default function Gardens(){
+export default function Gardens() {
     const router = useRouter();
     const [gardens, setGardens] = useState<Garden[]>([]);
-    const [gardenUserPairs, setGardenUserPairs] = useState<{ garden: Garden; user: User }[]>([]);
 
     const getGardens = async (): Promise<Garden[]> => {
-        const data = await fetch("http://localhost:5001/garden");
-        const response = await data.json();
-        return response;
-    };
-
-    const getUser = async (id: string): Promise<User> => {
-        const data = await fetch(`http://localhost:5001/users/${id}`);
-        if (!data.ok) {
-            throw new Error('User not found');
+        const response = await fetch("http://localhost:5001/garden");
+        if (!response.ok) {
+            console.error("Erreur de récupération des jardins");
+            return [];
         }
-        const response = await data.json();
-        return response;
+        const data = await response.json();
+        return data;
     };
 
     const all = async () => {
-        const gardens = await getGardens();
-        console.log(gardens);
-        const gardenUserPairs = await Promise.all(
-            gardens.map(async (garden) => {
-                const user = await getUser(garden.owner);
-                return { garden, user }; // Retourner un objet qui associe le jardin et le propriétaire
-            })
-        );
-
-        setGardenUserPairs(gardenUserPairs); // Mettre à jour l'état avec les paires jardin-utilisateur
+        const gardenData = await getGardens();
+        setGardens(gardenData);
     };
 
     useEffect(() => {
         all();
     }, []);
 
+    useEffect(() => {}, [gardens]);
+
+    function handleClick(id: string) {
+        router.push(`/gardenInformations/${id}`);
+    }
+
     return (
         <>
             <Navbar />
-            <section className="w-full h-full bg-secondary-100 p-6 flex flex-col pt-24 gap-8">
-                <h1>Les jardins</h1>
+            <section className="w-full h-full bg-secondary-100 p-6 flex flex-col justify-center items-center pt-24 gap-8 ">
+                <h2 className="text-xl font-bold">
+                    Les jardins de la <span className="bg-secondary-300 text-secondary-100 inline-block rotate-3">communauté</span> !
+                </h2>
+                <div className="w-full flex flex-col gap-4 p-4">
+                    {gardens.map((garden) => (
+                        <div key={garden._id} className="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md">
+                            <h2 className="font-bold">{garden.name}</h2>
+                            <p>{garden.description}</p>
+                            <div className="flex justify-between">
+                                <p>
+                                    Membres :{" "}
+                                    <span className="font-bold">
+                                        {Array.isArray(garden.members) ? garden.members.length : 0} / {garden.capacity}
+                                    </span>
+                                </p>
+                                <button onClick={() => handleClick(garden._id)} className="bg-primary p-2 rounded-lg font-bold cursor-pointer">
+                                    + de détails
+                                </button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </section>
             <Footer />
         </>
-    )
+    );
 }
