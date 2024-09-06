@@ -23,26 +23,6 @@ export default function Navbar() {
     useEffect(() => {
         handleConnect();
     }, []);
-    // useEffect(() => {
-    //     handleConnect();
-    //     const handleScroll = () => {
-    //         const currentScrollY = window.scrollY;
-
-    //         if (currentScrollY > lastScrollY) {
-    //             setIsVisible(false);
-    //         } else {
-    //             setIsVisible(true);
-    //         }
-
-    //         setLastScrollY(currentScrollY);
-    //     };
-
-    //     window.addEventListener("scroll", handleScroll);
-
-    //     return () => {
-    //         window.removeEventListener("scroll", handleScroll);
-    //     };
-    // }, [lastScrollY]);
 
     function clearStorage() {
         sessionStorage.clear();
@@ -53,26 +33,44 @@ export default function Navbar() {
         <>
             <nav className="w-full p-6 bg-primary text-md fixed" style={{ zIndex: 999 }}>
                 <div className="w-full flex justify-between items-center">
-                    <a href="/" className="font-bold text-xl">
+                    <a href="/" className="font-bold text-xl md:text-2xl lg:text-3xl">
                         UrbanRoots
                     </a>
-                    <FontAwesomeIcon icon={faBars} onClick={toggleMenu} className="w-8 h-8 cursor-pointer" />
+                    <FontAwesomeIcon icon={faBars} onClick={toggleMenu} className="w-8 h-8 cursor-pointer md:w-10 md:h-10 lg:w-12 lg:h-12" />
                 </div>
                 {menu && (
-                    <ul className="mt-4 flex flex-col gap-2 transition-all duration-300">
+                    <ul className="mt-4 flex flex-col gap-2 transition-all duration-300 md:text-lg lg:text-xl lg:gap-4">
                         <li>
-                            <a href="/map">Carte</a>
+                            <a className="cursor-pointer" href="/map">
+                                Carte
+                            </a>
                         </li>
                         <li>
-                            <a href="/gardens">Jardins - Potager</a>
+                            <a className="cursor-pointer" href="/gardens">
+                                Jardins - Potager
+                            </a>
                         </li>
                         <li>
-                            <a href="/forum">Forum</a>
+                            <a className="cursor-pointer" href="/forum">
+                                Forum
+                            </a>
                         </li>
                         <li>
-                            <a href="/guides">Guide</a>
+                            <a className="cursor-pointer" href="/guides">
+                                Guide
+                            </a>
                         </li>
-                        <li>{isConnected ? <a href="/account">Mon compte</a> : <a href="/connect">Connexion</a>}</li>
+                        <li>
+                            {isConnected ? (
+                                <a className="cursor-pointer" href="/account">
+                                    Mon compte
+                                </a>
+                            ) : (
+                                <a className="cursor-pointer" href="/connect">
+                                    Connexion
+                                </a>
+                            )}
+                        </li>
                         <li>
                             {isConnected ? (
                                 <button className="flex gap-2 items-center" onClick={clearStorage}>

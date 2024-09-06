@@ -27,7 +27,7 @@ export default function Thread(props: ThreadProps) {
     return (
         <>
             {bool ? (
-                <div className="flex flex-col gap-2 p-4 bg-secondary-300 rounded-2xl text-sm cursor-pointer">
+                <div className="flex flex-col gap-2 p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 bg-secondary-300 rounded-2xl cursor-pointer text-sm md:text-lg lg:text-xl">
                     <h2 className="font-bold">{title}</h2>
                     <p>{content}</p>
                     <p>
@@ -42,7 +42,9 @@ export default function Thread(props: ThreadProps) {
                     </p>
                 </div>
             ) : (
-                <div onClick={() => handleClick(props._id)} className="flex flex-col gap-2 p-4 bg-secondary-200 rounded-2xl text-sm cursor-pointer">
+                <div
+                    onClick={() => handleClick(props._id)}
+                    className="flex flex-col gap-2 p-4 md:p-6 lg:p-8 xl:p-10 2xl:p-12 bg-secondary-200 rounded-2xl cursor-pointer text-sm md:text-lg lg:text-xl">
                     <h2 className="font-bold">{title}</h2>
                     <p>{content}</p>
                     <p>

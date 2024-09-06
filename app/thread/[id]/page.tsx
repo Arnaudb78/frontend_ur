@@ -127,21 +127,23 @@ export default function PostDetails() {
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <Navbar />
-            <section className="flex flex-col gap-4 p-8 pt-24 bg-secondary-100">
-                <div className="flex flex-col gap-4">
-                <div onClick={handleBack} className="w-full flex items-center gap-2">
-                    <FontAwesomeIcon icon={faArrowLeft} className="w-10 h-10 text-2xl cursor-pointer" />
-                    <p>Revenir aux sujets</p>
-                </div>
+            <section className="flex flex-col gap-4 lg:gap-10 xl:gap-12 p-8 md:p-10 lg:p-12 pt-24 bg-secondary-100 md:pt-28 lg:pt-30 xl:pt-36 xl:p-20">
+                <div className="flex flex-col gap-4 lg:gap-10 xl:gap-12 md:gap-6">
+                    <div onClick={handleBack} className="w-full flex items-center gap-2 md:text-lg lg:text-xl">
+                        <FontAwesomeIcon icon={faArrowLeft} className="w-10 h-10 text-2xl cursor-pointer" />
+                        <p>Revenir aux sujets</p>
+                    </div>
                     {thread ? <Thread {...thread} bool={bool} /> : <div>Chargement du sujet...</div>}
-                    <div>
-                        <p className="text-xl text-center font-bold">
+                    <div className="text-sm md:text-lg lg:text-xl">
+                        <p className="text-xl text-center font-bold md:text-2xl lg:text-3xl xl:text-4xl">
                             N&apos;hésitez pas à <span className="bg-primary text-secondary-100 inline-block rotate-3">échanger</span> avec la
                             communauté !
                         </p>
                     </div>
                     <div className="w-full h-[1px] bg-black"></div>
-                    {post.length > 0 ? post.map((post) => <Post key={post._id} {...post} />) : <div>Pas encore de post.</div>}
+                    <div className="flex flex-col gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12">
+                        {post.length > 0 ? post.map((post) => <Post key={post._id} {...post} />) : <div>Pas encore de post.</div>}
+                    </div>
                 </div>
 
                 {isConnected ? (
@@ -159,7 +161,7 @@ export default function PostDetails() {
                     </form>
                 ) : (
                     <div>
-                        <p className="text-center">Connectez-vous pour poster un commentaire.</p>
+                        <p className="text-center text-sm md:text-lg lg:text-xl">Connectez-vous pour poster un commentaire.</p>
                     </div>
                 )}
             </section>

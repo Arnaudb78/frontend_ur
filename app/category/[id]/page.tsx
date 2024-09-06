@@ -49,17 +49,17 @@ export default function DetailsPage() {
         <Suspense fallback={<div>Loading...</div>}>
             <Navbar />
 
-            <section className="flex flex-col gap-4 p-8 pt-24 bg-secondary-100">
+            <section className="flex flex-col gap-4 p-8 pt-24 xl:gap-10 bg-secondary-100 md:pt-28 lg:pt-30 xl:pt-36 xl:p-20">
                 <div>
-                    <p className="text-xl text-center font-bold">
+                    <p className="text-xl text-center font-bold md:text-2xl lg:text-3xl xl:text-4xl">
                         Choisissez un <span className="bg-secondary-300 text-secondary-100 inline-block rotate-3">sujet</span> !
                     </p>
                 </div>
-                <div onClick={handleBack} className="w-full flex items-center gap-2">
+                <div onClick={handleBack} className="w-full flex items-center gap-2 md:text-lg lg:text-xl">
                     <FontAwesomeIcon icon={faArrowLeft} className="w-10 h-10 text-2xl cursor-pointer" />
                     <p>Revenir aux catégories</p>
                 </div>
-                <div className=" flex flex-col gap-4">
+                <div className=" flex flex-col gap-4 md:gap-8 lg:gap-10">
                     {threads.length > 0 ? (
                         threads.map((thread) => <Thread key={thread._id} {...thread} bool={bool} />)
                     ) : (

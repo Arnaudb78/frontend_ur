@@ -204,47 +204,61 @@ export default function GuidePage() {
     return (
         <Suspense>
             <Navbar />
-            <section className="flex flex-col justify-center items-center gap-4 p-8 pt-24 bg-secondary-100 text-sm">
+            <section className="flex flex-col justify-center items-center gap-4 p-8 pt-24 bg-secondary-100 text-sm md:pt-28 sm:gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 xl:pt-36 xl:p-20 md:text-lg lg:text-xl">
                 <div onClick={handleBack} className="w-full flex items-center gap-2">
                     <FontAwesomeIcon icon={faArrowLeft} className="w-10 h-10 text-2xl cursor-pointer" />
                     <p>Revenir aux jardins</p>
                 </div>
-                <h2 className="text-2xl font-bold text-center">Les informations du jardin-potager de {owner?.firstname}</h2>
-                <div className="w-full flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md">
-                    <h3 className="font-bold">{garden?.name}</h3>
-                    <p>{garden?.description}</p>
-                    <p>
-                        Membres :{" "}
-                        <span className="font-bold">
-                            {count} / {garden?.capacity}
-                        </span>
-                    </p>
+                <h2 className="text-2xl font-bold text-center md:text-2xl lg:text-3xl xl:text-4xl">
+                    Les informations du jardin-potager de {owner?.firstname}
+                </h2>
+                <div className="w-full flex flex-col gap-4 lg:gap-6 xl:gap-10 2xl:gap-10 p-4 bg-white rounded-lg shadow-md text-sm md:text-lg lg:text-xl md:p-8 md:px-10">
+                    <div className="flex flex-col gap-4 lg:flex-row xl:justify-evenly">
+                        <div className="flex flex-col gap-4 lg:p-8">
+                            <h3 className="font-bold">{garden?.name}</h3>
+                            <p>{garden?.description}</p>
+                            <p>
+                                Membres :{" "}
+                                <span className="font-bold">
+                                    {count} / {garden?.capacity}
+                                </span>
+                            </p>
 
-                    <p>
-                        Propriétaire : {owner?.firstname} {owner?.lastname}
-                    </p>
-                    <p className="font-bold">Adresse du jardin-potager :</p>
-                    {isConnected ? (
-                        <ul className="flex flex-col gap-2">
-                            <li>{address?.street}</li>
-                            {address?.complementary && <li>{address?.complementary}</li>}
-                            <li>
-                                {address?.postCode} {address?.city}
-                            </li>
-                            <li>{address?.country}</li>
-                        </ul>
-                    ) : (
-                        <p>Connectez-vous pour voir l'adresse</p>
-                    )}
-                    {isInGarden ? (
-                        <button onClick={() => handleLeaveGarden()} className="bg-red-600 text-secondary-200 p-2 rounded-lg font-bold cursor-pointer">
-                            Quitter le jardin
-                        </button>
-                    ) : (
-                        <button onClick={joinGarden} className="bg-primary p-2 rounded-lg font-bold cursor-pointer">
-                            Rejoindre le jardin
-                        </button>
-                    )}
+                            <p>
+                                Propriétaire : {owner?.firstname} {owner?.lastname}
+                            </p>
+                        </div>
+                        <div className="flex flex-col gap-4 lg:p-8">
+                            <p className="font-bold">Adresse du jardin-potager :</p>
+                            {isConnected ? (
+                                <ul className="flex flex-col gap-2">
+                                    <li>{address?.street}</li>
+                                    {address?.complementary && <li>{address?.complementary}</li>}
+                                    <li>
+                                        {address?.postCode} {address?.city}
+                                    </li>
+                                    <li>{address?.country}</li>
+                                </ul>
+                            ) : (
+                                <p>Connectez-vous pour voir l'adresse</p>
+                            )}
+                        </div>
+                    </div>
+                    <div className="w-full flex justify-center items-center">
+                        {isInGarden ? (
+                            <button
+                                onClick={() => handleLeaveGarden()}
+                                className="w-full bg-red-600 text-secondary-200 p-2 rounded-lg font-bold cursor-pointer md:text-lg md:w-[60%] lg:text-xl xl:w-[40%] xl:text-2xl">
+                                Quitter le jardin
+                            </button>
+                        ) : (
+                            <button
+                                onClick={joinGarden}
+                                className="w-full bg-primary p-2 rounded-lg font-bold cursor-pointer md:text-lg md:w-[60%] lg:text-xl xl:w-[40%] xl:text-2xl">
+                                Rejoindre le jardin
+                            </button>
+                        )}
+                    </div>
                 </div>
             </section>
             <Footer />
