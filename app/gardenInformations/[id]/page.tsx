@@ -131,13 +131,16 @@ export default function GuidePage() {
     const joinGarden = async () => {
         const user = sessionStorage.getItem("user");
         if (!user) {
-            router.push(`/connect`);
+            alert("Utilisateur non connecté.");
+            return;
         }
 
         const accessToken = JSON.parse(user).accessToken;
         if (!accessToken) {
-            router.push(`/connect`);
+            alert("Token d'accès manquant.");
+            return;
         }
+
         try {
             const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/garden/join`, {
                 method: "POST",
@@ -177,12 +180,14 @@ export default function GuidePage() {
     const handleLeaveGarden = async () => {
         const user = sessionStorage.getItem("user");
         if (!user) {
-            router.push(`/connect`);
+            alert("Utilisateur non connecté.");
+            return;
         }
 
         const accessToken = JSON.parse(user).accessToken;
         if (!accessToken) {
-            router.push(`/connect`);
+            alert("Token d'accès manquant.");
+            return;
         }
         try {
             const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/garden/leave`, {
