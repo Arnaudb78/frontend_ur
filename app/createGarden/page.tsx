@@ -26,7 +26,7 @@ export default function CreateGarden() {
         const user = sessionStorage.getItem("user");
         if (!user) {
             alert("Utilisateur non connecté.");
-            router.push("/login");
+            return;
         }
 
         const accessToken = JSON.parse(user).accessToken;
@@ -36,7 +36,7 @@ export default function CreateGarden() {
         }
 
         try {
-            const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/garden/register`, {
+            const response = await fetch(`http://localhost:5001/garden/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
