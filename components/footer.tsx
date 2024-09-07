@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="h-full w-full p-8 lg:p-8 bg-secondary-100">
+        <footer className="h-full w-full p-8 bg-secondary-100 md:p-8 lg:p-10 xl:p-14">
             <div className="w-full h-full bg-secondary-200 flex flex-col p-8 text-[12px] gap-8 rounded-2xl">
                 <div className="w-full h-full justify-evenly items-start flex gap-4 lg:w-full lg:flex-row lg:justify-end lg:gap-20">
                     <div className="flex flex-col gap-2">

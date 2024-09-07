@@ -75,7 +75,7 @@ export default function Navbar() {
                             {isConnected ? (
                                 <button className="flex gap-2 items-center" onClick={clearStorage}>
                                     <FontAwesomeIcon icon={faPowerOff} className="w-6 h-6 cursor-pointer" />
-                                    <p className="text-sm">Deconnexion</p>
+                                    <p className="text-sm md:text-lg lg:text-xl">Deconnexion</p>
                                 </button>
                             ) : (
                                 <></>

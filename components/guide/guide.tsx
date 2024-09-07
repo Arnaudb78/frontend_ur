@@ -23,17 +23,17 @@ export default function Guide(props: GuideProps) {
     useEffect(() => {}, [props]);
 
     return (
-        <div className="flex flex-col gap-6 p-4 bg-secondary-300 rounded-2xl text-sm">
-            <h2 className="font-bold text-lg">{title}</h2>
-            <h3 className="font-bold text-sm"><span className="underline">Etape 1 :</span> {subtitle1}</h3>
+        <div className="flex flex-col justify-center items-center gap-6 sm:gap-10 md:gap-14 lg:gap-20 p-4 sm:p-8 md:p-12 lg:p-16 xl:p-20 2xl:p-32  bg-secondary-300 rounded-2xl text-sm md:text-lg lg:text-xl">
+            <h2 className="font-bold text-xl md:text-2xl lg:text-3xl xl:text-4xl">{title}</h2>
+            <h3 className="font-bold text-lg"><span className="underline">Etape 1 :</span> {subtitle1}</h3>
             <p>{content1}</p>
-            <img src={img1} alt="Photo de jardin potager" />
-            <h3 className="font-bold text-sm"><span className="underline">Etape 2 :</span> {subtitle2}</h3>
+            <img src={img1} alt="Photo de jardin potager" className="w-96 h-72 rounded-xl border-secondary-100 border object-cover md:w-[600px] md:h-[400px] xl:w-[700px] xl:h-[500px]"/>
+            <h3 className="font-bold text-lg"><span className="underline">Etape 2 :</span> {subtitle2}</h3>
             <p>{content2}</p>
-            <img src={img2} alt="Photo de jardin potager" />
-            <h3 className="font-bold text-sm"><span className="underline">Etape 3 :</span> {subtitle3}</h3>
+            <img src={img2} alt="Photo de jardin potager" className="w-96 h-72 rounded-xl border-secondary-100 border object-cover md:w-[600px] md:h-[400px] xl:w-[700px] xl:h-[500px]"/>
+            <h3 className="font-bold text-lg"><span className="underline">Etape 3 :</span> {subtitle3}</h3>
             <p>{content3}</p>
-            <img src={img3} alt="Photo de jardin potager" />
+            <img src={img3} alt="Photo de jardin potager" className="w-96 h-72 rounded-xl border-secondary-100 border object-cover md:w-[600px] md:h-[400px] xl:w-[700px] xl:h-[500px]"/>
         </div>
     );
 }

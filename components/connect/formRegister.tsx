@@ -25,7 +25,7 @@ const FormRegister: React.FC<FormConnectProps> = ({ setShowSignup }) => {
         if (!firstname || !lastname || !mail || !password || !confirmPassword || !rules) return alert("Veuillez remplir tous les champs.");
         if (password !== confirmPassword) return alert("Les mots de passe ne correspondent pas");
 
-        const response = await fetch("https://urban-roots-ada879145d2c.herokuapp.com/users/register", {
+        const response = await fetch("http://localhost:5001/users/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const FormRegister: React.FC<FormConnectProps> = ({ setShowSignup }) => {
         <>
             <form
                 onSubmit={handleSubmit}
-                className="bg-[url('/images/bg-flower.jpg')] bg-cover p-8 rounded-2xl bg-opacity-15 text-secondary-200 text-sm flex flex-col gap-4 ">
+                className="bg-[url('/images/bg-flower.jpg')] bg-cover p-8 rounded-2xl bg-opacity-15 text-secondary-200 flex flex-col gap-4 text-sm md:text-lg lg:text-xl">
                 <label className="flex flex-col gap-2">
                     <p>Prénom</p>
                     <input

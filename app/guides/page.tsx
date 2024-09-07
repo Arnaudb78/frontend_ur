@@ -40,7 +40,7 @@ export default function GuidePage() {
     const [guides, setGuides] = useState<Guides[]>([]);
 
     useEffect(() => {
-        fetch("https://urban-roots-ada879145d2c.herokuapp.com/guide")
+        fetch("http://localhost:5001/guide")
             .then((res) => res.json())
             .then((data) => setGuides(data));
     }, []);
@@ -52,14 +52,14 @@ export default function GuidePage() {
     return (
         <>
             <Navbar />
-            <section className="p-6 w-full h-full bg-secondary-100 pt-24">
-                <div className="w-full max-w-4xl mx-auto flex flex-col gap-4">
-                    <p className="text-xl text-center font-bold">
+            <section className="p-6 w-full h-full bg-secondary-100 pt-24 md:pt-28 lg:pt-30 xl:pt-36 xl:p-20">
+                <div className="w-full max-w-4xl mx-auto flex flex-col gap-4 md:gap-6 lg:gap-10 xl:gap-12 2xl:gap-14">
+                    <p className="text-xl text-center font-bold md:text-2xl lg:text-3xl xl:text-4xl">
                         Ici, retrouve tous les <span className="bg-secondary-300 text-secondary-100 inline-block rotate-3">guides</span> disponible actuellement.
                     </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-8 xl:gap-10 2xl:gap-12">
                         {guides.map((guide) => (
-                            <div key={guide._id} onClick={() => handleClick(guide._id)} className="bg-white p-4 rounded-md shadow-md cursor-pointer text-sm flex flex-col gap-4">
+                            <div key={guide._id} onClick={() => handleClick(guide._id)} className="bg-white p-4 rounded-md shadow-md cursor-pointer flex flex-col gap-4 text-sm md:text-lg lg:text-xl lg:p-8">
                                 <h2 className="font-bold">{guide.title}</h2>
                                 <p>{guide.description}</p>
                             </div>

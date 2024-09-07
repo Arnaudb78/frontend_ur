@@ -22,7 +22,7 @@ export default function Account() {
     }, []);
 
     const verifyToken = async (accessToken: string) => {
-        const response = await fetch("https://urban-roots-ada879145d2c.herokuapp.com/users/verify", {
+        const response = await fetch("http://localhost:5001/users/verify", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export default function Account() {
         <>
             <div className="bg-secondary-100">
                 <Navbar />
-                <section className="bg-secondary-100 w-full h-full p-8 pt-24">{admin ? <Admin /> : <User />}</section>
+                <section className="bg-secondary-100 w-full h-full p-8 pt-24 md:p-8 md:pt-24 md:gap-10 xl:gap-20 xl:pt-32">{admin ? <Admin /> : <User />}</section>
                 <Footer />
             </div>
         </>

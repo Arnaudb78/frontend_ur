@@ -32,7 +32,7 @@ export default function GuidePage() {
     const getGuideData = async () => {
         if (id) {
             try {
-                const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/guide/${id}`);
+                const response = await fetch(`http://localhost:5001/guide/${id}`);
                 const data = await response.json();
                 setGuide(data);
             } catch (error) {
@@ -52,9 +52,9 @@ export default function GuidePage() {
     return (
         <Suspense>
             <Navbar />
-            <section className="flex flex-col gap-4 p-8 pt-24 bg-secondary-100">
-                <div onClick={handleBack} className="w-full flex items-center gap-2">
-                    <FontAwesomeIcon icon={faArrowLeft} className="w-10 h-10 text-2xl cursor-pointer" />
+            <section className="flex flex-col gap-4 md:gap-8 lg:gap-12 p-8 pt-24 lg:pt-36 bg-secondary-100 md:pt-30 lg:pt-30 xl:pt-36 xl:p-20">
+                <div onClick={handleBack} className="w-full flex items-center gap-2 md:text-lg lg:text-xl">
+                    <FontAwesomeIcon icon={faArrowLeft} className="w-10 h-10 cursor-pointer" />
                     <p>Revenir aux guides</p>
                 </div>
                 {guide ? <Guide {...guide} /> : <p>Loading...</p>}</section>

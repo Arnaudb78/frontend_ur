@@ -16,7 +16,7 @@ const FormLogin: React.FC<FormCreateProps> = ({ setShowSignup }) => {
         e.preventDefault();
         if (!mail || !password) return alert("Veuillez remplir tous les champs");
         // https://urban-roots-ada879145d2c.herokuapp.com
-        const response = await fetch("https://urban-roots-ada879145d2c.herokuapp.com/users/login", {
+        const response = await fetch("http://localhost:5001/users/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const FormLogin: React.FC<FormCreateProps> = ({ setShowSignup }) => {
         <>
             <form
                 onSubmit={handleSubmit}
-                className="w-full h-full bg-[url('/images/bg-flower.jpg')] bg-cover p-8 rounded-2xl bg-opacity-15 text-secondary-200 text-sm flex flex-col gap-4">
+                className="w-full h-full bg-[url('/images/bg-flower.jpg')] bg-cover p-8 rounded-2xl bg-opacity-15 text-secondary-200 flex flex-col gap-4 text-sm md:text-lg lg:text-xl">
                 <label className="flex flex-col gap-2">
                     <p>Adresse mail</p>
                     <input
