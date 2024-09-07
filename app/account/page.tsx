@@ -22,7 +22,7 @@ export default function Account() {
     }, []);
 
     const verifyToken = async (accessToken: string) => {
-        const response = await fetch("http://localhost:5001/users/verify", {
+        const response = await fetch("https://urban-roots-ada879145d2c.herokuapp.com/users/verify", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
