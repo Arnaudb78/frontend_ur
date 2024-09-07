@@ -101,7 +101,7 @@ export default function CreateGarden() {
                         <input
                             type="number"
                             value={capacity}
-                            onChange={(event) => setCapacity(event.target.value)}
+                            onChange={(event) => setCapacity(Number(event.target.value))}
                             className="p-2 border border-solid border-secondary-300 rounded-full bg-transparent"
                         />
                     </label>
