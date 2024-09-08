@@ -38,7 +38,7 @@ export default function Map() {
     const [gardenLocations, setGardenLocations] = useState<{ garden: Garden, address: Address }[]>([]);
 
     const getGardens = async (): Promise<Garden[]> => {
-        const response = await fetch("http://localhost:5001/garden");
+        const response = await fetch("https://urban-roots-ada879145d2c.herokuapp.com/garden");
         if (!response.ok) {
             console.error("Erreur de récupération des jardins");
             return [];
@@ -49,7 +49,7 @@ export default function Map() {
 
     const getAddress = async (addressId: string): Promise<Address | null> => {
         try {
-            const response = await fetch(`http://localhost:5001/address/${addressId}`);
+            const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/address/${addressId}`);
             if (!response.ok) {
                 console.error(`Erreur de récupération de l'adresse avec l'ID ${addressId}`);
                 return null;
@@ -61,7 +61,7 @@ export default function Map() {
             return null;
         }
     };
-
+    
     const all = async () => {
         const gardenData = await getGardens();
 

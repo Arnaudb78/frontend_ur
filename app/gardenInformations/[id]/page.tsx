@@ -56,7 +56,7 @@ export default function GuidePage() {
     }
 
     const getData = async () => {
-        const response = await fetch(`http://localhost:5001/garden/get`, {
+        const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/garden/get`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -88,7 +88,7 @@ export default function GuidePage() {
         if (!garden?._id) return;
 
         try {
-            const response = await fetch(`http://localhost:5001/garden/check`, {
+            const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/garden/check`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -142,7 +142,7 @@ export default function GuidePage() {
         }
 
         try {
-            const response = await fetch(`http://localhost:5001/garden/join`, {
+            const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/garden/join`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -190,7 +190,7 @@ export default function GuidePage() {
             return;
         }
         try {
-            const response = await fetch(`http://localhost:5001/garden/leave`, {
+            const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/garden/leave`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
