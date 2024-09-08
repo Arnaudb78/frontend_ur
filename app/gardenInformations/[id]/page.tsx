@@ -249,7 +249,8 @@ export default function GuidePage() {
                             )}
                         </div>
                     </div>
-                    <div className="w-full flex justify-center items-center">
+                    { isConnected ? (
+                        <div className="w-full flex justify-center items-center">
                         {isInGarden ? (
                             <button
                                 onClick={() => handleLeaveGarden()}
@@ -264,6 +265,12 @@ export default function GuidePage() {
                             </button>
                         )}
                     </div>
+                    ) : (
+                        <div className="w-full flex justify-center items-center">
+                            <p>Connectez-vous pour rejoindre le jardin.</p>
+                        </div>
+                    )}
+                    
                 </div>
             </section>
             <Footer />

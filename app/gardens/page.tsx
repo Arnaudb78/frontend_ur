@@ -56,13 +56,7 @@ export default function Gardens() {
                         <div key={garden._id} className="flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md lg:p-10 lg:gap-6">
                             <h2 className="font-bold">{garden.name}</h2>
                             <p>{garden.description}</p>
-                            <div className="flex justify-between">
-                                <p>
-                                    Membres :{" "}
-                                    <span className="font-bold">
-                                        {Array.isArray(garden.members) ? garden.members.length : 0} / {garden.capacity}
-                                    </span>
-                                </p>
+                            <div className="flex justify-end">
                                 <button onClick={() => handleClick(garden._id)} className="bg-primary p-2 rounded-lg font-bold cursor-pointer">
                                     + de détails
                                 </button>

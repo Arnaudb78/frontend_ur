@@ -24,6 +24,7 @@ export default function Garden() {
     const [span, setSpan] = useState<string>("");
     const [endMessage, setEndMessage] = useState<string>("");
     const [secondMessage, setSecondMessage] = useState<string>("");
+    const [count, setCount] = useState<number>(0);
 
     function handleBack() {
         router.back();
@@ -46,6 +47,7 @@ export default function Garden() {
             const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/garden/${accessToken}`);
             const gardens = await response.json();
 
+            console.log("Données reçues:", gardens[0].members);
             if (response.status === 400) {
                 alert("Token invalide, veuillez vous reconnecter.");
                 router.push("/login");
@@ -66,10 +68,21 @@ export default function Garden() {
 
     useEffect(() => {
         findGardens();
+        getCountByGarden();
     }, []);
 
     function handleClick() {
         setSecondMessage("Fonctionnalité à venir.");
+    }
+
+    function getCountByGarden(){
+        if(gardens.length > 0){
+            gardens.map((garden) => {
+                setCount(garden.members.length);
+            });
+        }
+
+        return count;
     }
 
     return (
@@ -85,7 +98,7 @@ export default function Garden() {
                         <div key={garden._id} className="w-full sm:w-3/4 xl:w-1/2 flex flex-col gap-4 p-4 bg-white rounded-lg shadow-md">
                             <h2 className="font-bold">{garden.name}</h2>
                             <p>{garden.description}</p>
-                            <p>Membres : <span className="font-bold">{Array.isArray(garden.members) ? garden.members.length : 0} / {garden.capacity}</span></p>
+                            <p>Membres : <span className="font-bold">{garden.members.length} / {garden.capacity}</span></p>
                         </div>
                     ))
                 ) : (
