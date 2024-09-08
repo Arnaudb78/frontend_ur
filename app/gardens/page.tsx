@@ -20,7 +20,7 @@ export default function Gardens() {
     const [gardens, setGardens] = useState<Garden[]>([]);
 
     const getGardens = async (): Promise<Garden[]> => {
-        const response = await fetch("https://urban-roots-ada879145d2c.herokuapp.com/garden");
+        const response = await fetch("http://localhost:5001/garden");
         if (!response.ok) {
             console.error("Erreur de récupération des jardins");
             return [];

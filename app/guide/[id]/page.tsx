@@ -32,7 +32,7 @@ export default function GuidePage() {
     const getGuideData = async () => {
         if (id) {
             try {
-                const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/guide/${id}`);
+                const response = await fetch(`http://localhost:5001/guide/${id}`);
                 const data = await response.json();
                 setGuide(data);
             } catch (error) {

@@ -36,7 +36,7 @@ export default function CreateGarden() {
         }
 
         try {
-            const response = await fetch(`https://urban-roots-ada879145d2c.herokuapp.com/garden/register`, {
+            const response = await fetch(`http://localhost:5001/garden/register`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
